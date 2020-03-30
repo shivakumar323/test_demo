@@ -1,1 +1,23 @@
-Hello Shiva
+"""rest api's"""
+
+   """ url config"""
+   (r'/api/groups$',                       'api.groups',           'GroupsHandler'),
+   
+   """ request handler """
+   
+   class GroupsHandler(BaseApiHandler):
+
+    @HandleRequest
+    @coroutine
+    def get(self):
+        model = GroupsListModel(self.user)
+        self.output = model.getGroupDetails()
+        
+    """ model method for returning data"""
+    
+    @coroutine
+    def getGroupDetails(self):
+        data = {"a":"name","b":"place"}
+        raise Return(data)
+   
+   
